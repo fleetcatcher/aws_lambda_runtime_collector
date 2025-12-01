@@ -8,7 +8,7 @@ regions=$(aws ec2 describe-regions --query 'Regions[].RegionName' --output text)
 start_time=$(date -u -d "1 year ago" +"%Y-%m-%dT%H:%M:%SZ")
 end_time=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
-echo '"Function name,ARN,Runtime version,Last modified,Ran in a year"'
+echo '"Function name","ARN","Runtime version","Last modified","Ran in a year"'
 for region in ${regions}; do
     functions=$(aws lambda list-functions --region "${region}" \
         --query "Functions[?starts_with(Runtime, 'python')]" \
